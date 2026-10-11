@@ -8,6 +8,8 @@
 
 ## 1-2 請 AI 協助寫計畫（20 分鐘）
 
+`analysis_plan.yml` 和 `paper/01_methods.md` clone 下來時就有了，但只是骨架，裡面標 `TODO` 的地方要依照你們的題目填寫。
+
 把下面這段複製給 AI，**把 `[ ]` 裡的內容換成你們的選擇**：
 
 ```
@@ -16,8 +18,8 @@
 你可以查看 data/hs_school_year.csv 的欄位與結構，但不要計算任何結果。
 
 請協助我們：
-1. 填寫 analysis_plan.yml 的每個 TODO（只能有一個主要假設）
-2. 寫 paper/01_methods.md
+1. 填寫 analysis_plan.yml 裡的每個 TODO（只能有一個主要假設）
+2. 填寫 paper/01_methods.md 裡的 TODO（「資料來源」那段已經寫好，保留不動）
 
 遇到需要選擇的地方（例如要不要排除進修學校、只比較兩個學年度還是看趨勢），
 請列出選項和各自的優缺點，讓我們決定，不要直接替我們決定。
