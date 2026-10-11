@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+# 資料由 src/get_data.py 下載
+data/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,39 @@
+# =====================================================================
+# 分析計畫（MRI-DATA 的 M 階段）
+# 把下面每個 TODO 換成你們的內容。凍結（git tag methods-frozen）之後就不能再改；
+# 真的需要改時，先在 deviations.md 記錄。
+# =====================================================================
+
+group: TODO                 # 組別，例如：第 3 組
+members: [TODO]             # 組員姓名
+
+# 從 docs/research_questions.md 選一題（A／B／C），用一句話寫出研究問題
+research_question: TODO
+
+# 唯一的主要假設（要能被資料檢驗，例如「私立學校的下降幅度大於公立學校」）
+primary_hypothesis: TODO
+
+# 結果變數：用哪個欄位、怎麼計算（例如：103 到 114 學年度 students_grade1 的變化率）
+outcome: TODO
+
+# 比較什麼：組別或關係（例如：公立 vs 私立，依 sector 分組）
+comparison: TODO
+
+# 樣本：納入哪些學校、排除哪些、用哪幾個學年度，以及理由
+sample: TODO
+
+# 統計方法：用什麼方法檢驗主要假設、顯著水準
+method: TODO
+
+# 用到的資料欄位（必須存在於 docs/codebook.md）
+variables:
+  - TODO
+
+# 探索性分析（可留空）：主要假設以外的分析，結果只當作參考
+exploratory: []
+
+# 預計產出的表格與圖（檔名放在 results/）
+outputs:
+  - TODO
+
+seed: 42                    # 隨機種子；沒有用到隨機性也保留

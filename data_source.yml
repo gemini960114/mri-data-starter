@@ -1,0 +1,13 @@
+# 資料來源設定（請勿修改）
+# get_data.py 依此下載資料，並核對 SHA-256，確保全班使用完全相同的資料。
+
+dataset: tw-highschool-panel
+version: v2026.10.1
+doi: 10.5281/zenodo.23293536
+repository: https://github.com/gemini960114/tw-highschool-panel
+
+files:
+  - name: hs_school_year.csv
+    description: 校×學年度面板（103–114 學年度，6,297 列）
+    url: https://raw.githubusercontent.com/gemini960114/tw-highschool-panel/v2026.10.1/data/processed/hs_school_year.csv
+    sha256: 1299c22415f7c8f0a1978d723627ed99b459d8cb32a8262eccc8ac6159913e33
