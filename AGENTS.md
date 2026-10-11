@@ -32,11 +32,13 @@ MRI-DATA 的寫作順序是：
 - 如果發現計畫行不通（例如欄位全是 0、樣本太少），先停下來向使用者說明原因與建議做法。使用者同意後，**先**在 `deviations.md` 新增一列，**再**照新做法執行。
 - 分析程式放在 `src/`，以 `uv run python src/<檔名>.py` 執行；結果輸出到 `results/`（表格存 CSV、圖存 PNG）。
 - 有隨機性的程序一律使用 `analysis_plan.yml` 指定的隨機種子。
+- 畫圖時設定中文字型的備選清單：`plt.rcParams["font.sans-serif"] = ["Microsoft JhengHei", "PingFang TC", "Noto Sans CJK TC", "DejaVu Sans"]`。存檔後檢查中文是否變成方框；如果是，改用英文標籤並告訴使用者。
 
 ## 4. 數字的規則（最重要）
 
 - 論文中的**每一個數字**都必須來自 `results/` 裡的檔案，不得自行估計、四捨五入成不同的值，或憑記憶填寫。
 - 在 `paper/02_results.md` 中，每個數字後面標註來源，例如：`（results/table1.csv）`。
+- 需要差額、比例、排名等**衍生數字**時，必須在分析程式中計算並存進 `results/` 的檔案，**不可以在文字中心算**。如果這個表格不在 `analysis_plan.yml` 的 outputs 裡，要先在 `deviations.md` 記錄。
 - 摘要、討論中出現的數字，必須是 `paper/02_results.md` 已經出現過的數字。
 - 寫完後執行 `uv run python src/check_stage.py R`（或 `A`），它會列出找不到來源的數字。
 

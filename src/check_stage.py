@@ -6,6 +6,7 @@
 
 符號：✅ 通過　⚠️ 請人工確認　❌ 未完成或違反規則
 數字核對會列出「在來源檔中找不到」的數字，請逐一確認；它只是輔助工具，最後仍要人工查核。
+不核對的數字：標題行、來源標註、0–10 的整數、學年度與年份、90%／95%／99%、0.05／0.01／0.001。
 """
 import re
 import subprocess
@@ -40,18 +41,30 @@ def read(name: str) -> str:
     return p.read_text(encoding="utf-8") if p.exists() else ""
 
 
+REF_TODO = "TODO：需補文獻"
+
+
 def filled(name: str, min_chars: int = 200) -> tuple[bool, str]:
+    """章節是否已填寫。「TODO：需補文獻」只提醒、不擋關（課堂時間內不一定能補齊文獻）。"""
     text = read(name)
     body = "\n".join(line for line in text.splitlines() if not line.lstrip().startswith(("#", ">", "<!--")))
-    if "TODO" in text:
+    if "TODO" in text.replace(REF_TODO, ""):
         return False, f"{name} 還有 TODO 沒填"
     if len(body.strip()) < min_chars:
         return False, f"{name} 內容太少（{len(body.strip())} 字）"
+    if REF_TODO in text:
+        say(name_stage.get(name, "?"), "⚠️", f"{name} 有 {text.count(REF_TODO)} 處「{REF_TODO}」，課後請補上可查證的文獻")
     return True, f"{name} 已填寫"
+
+
+name_stage = {"01_methods.md": "M", "02_results.md": "R", "03_intro.md": "I", "04_discussion.md": "D",
+              "05_abstract.md": "A", "00_title.md": "T"}
 
 
 # ---------- 數字核對 ----------
 NUM = re.compile(r"(?<![\w.])-?\d[\d,]*(?:\.\d+)?%?")
+# 統計慣用的常數（信賴水準、顯著水準），不需要來源檔
+CONSTANTS = {"90%", "95%", "99%", "0.05", "0.01", "0.001"}
 
 
 def numbers_in_text(text: str) -> list[tuple[str, str]]:
@@ -63,6 +76,8 @@ def numbers_in_text(text: str) -> list[tuple[str, str]]:
         clean = re.sub(r"[（(][^（()）]*results/[^（()）]*[)）]", "", line)  # 去掉（results/xxx.csv）
         clean = re.sub(r"`[^`]*`", "", clean)  # 去掉程式碼與欄位名稱
         for tok in NUM.findall(clean):
+            if tok in CONSTANTS:
+                continue
             raw = tok.replace(",", "").rstrip("%")
             try:
                 val = float(raw)
@@ -146,7 +161,7 @@ def check_R() -> None:
     say("R", "✅" if files else "❌", f"results/ 有 {len(files)} 個 CSV 結果檔" if files else "results/ 還沒有 CSV 結果檔")
     ok, msg = filled("02_results.md")
     say("R", "✅" if ok else "❌", msg)
-    if files and read("02_results.md"):
+    if files and ok:
         report_unmatched("R", "02_results.md", csv_numbers(), " results/ 的 CSV 中")
         if "results/" not in read("02_results.md"):
             say("R", "⚠️", "02_results.md 沒有標註任何來源檔（例如：（results/table1.csv））")
@@ -162,14 +177,14 @@ def check_D() -> None:
     say("D", "✅" if ok else "❌", msg)
     if ok and "限制" not in read("04_discussion.md"):
         say("D", "⚠️", "04_discussion.md 沒有提到「限制」")
-    if read("04_discussion.md"):
+    if ok:
         report_unmatched("D", "04_discussion.md", text_numbers("02_results.md"), " 02_results.md 中")
 
 
 def check_A() -> None:
     ok, msg = filled("05_abstract.md", 100)
     say("A", "✅" if ok else "❌", msg)
-    if read("05_abstract.md"):
+    if ok:
         report_unmatched("A", "05_abstract.md", text_numbers("02_results.md"), " 02_results.md 中")
 
 
@@ -184,8 +199,14 @@ def check_X() -> None:
         say("X", "❌", "尚未組裝。執行：uv run python src/assemble.py")
         return
     text = p.read_text(encoding="utf-8")
-    say("X", "⚠️" if "TODO" in text else "✅", "paper.md 還有 TODO" if "TODO" in text else "paper.md 已組裝，沒有 TODO")
-    dev = (ROOT / "deviations.md").read_text(encoding="utf-8")
+    other_todo = text.replace(REF_TODO, "").count("TODO")
+    if other_todo:
+        say("X", "❌", f"paper.md 還有 {other_todo} 個 TODO 沒填")
+    elif REF_TODO in text:
+        say("X", "⚠️", f"paper.md 已組裝；還有 {text.count(REF_TODO)} 處需補文獻")
+    else:
+        say("X", "✅", "paper.md 已組裝，沒有 TODO")
+    dev = re.sub(r"<!--.*?-->", "", (ROOT / "deviations.md").read_text(encoding="utf-8"), flags=re.S)
     n = len([l for l in dev.splitlines() if re.match(r"^\|\s*D\d+", l)])
     say("X", "✅", f"deviations.md 共 {n} 筆計畫變更（0 筆也可以，分享時說明即可）")
 
