@@ -63,6 +63,13 @@ uv run python src/get_data.py
 | 5–6　A + T：摘要與標題 | [`prompts/5_AT_abstract_title.md`](prompts/5_AT_abstract_title.md) | 10 分鐘 |
 | 7　Assembly：組裝與分享準備 | [`prompts/7_X_assembly.md`](prompts/7_X_assembly.md) | 5 分鐘 |
 
+課後作業：
+
+| 作業 | 檔案 | 時間 |
+|---|---|---|
+| 一　補充文獻（自己搜尋、閱讀、決定） | [`prompts/8_references.md`](prompts/8_references.md) | 約 1 小時 |
+| 二　轉成 APA 第 7 版格式 | [`prompts/9_format_apa.md`](prompts/9_format_apa.md) | 約 1 小時 |
+
 研究題目在 [`docs/research_questions.md`](docs/research_questions.md)：主題是「**少子化與高中一年級學生數**」，每組從 A、B、C 三題選一題。
 
 ## 隨時檢查進度
