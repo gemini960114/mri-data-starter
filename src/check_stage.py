@@ -19,7 +19,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 PAPER = ROOT / "paper"
 RESULTS = ROOT / "results"
-PLAN_KEYS = ["research_question", "primary_hypothesis", "outcome", "comparison", "sample", "method", "seed"]
+PLAN_KEYS = ["group", "members", "research_question", "primary_hypothesis", "outcome", "comparison", "sample", "method", "seed"]
 
 results: list[tuple[str, str, str]] = []
 

@@ -41,6 +41,13 @@ uv run python src/check_stage.py M
 
 ## 1-4 凍結（5 分鐘）
 
+凍結前最後確認（凍結後就不能改）：
+
+- [ ] `group`、`members` 已填寫
+- [ ] 主要假設只有一個；如果有方向（例如「越大越…」），有寫出理由，而且和單尾／雙尾檢定一致
+- [ ] AI 建議的修改都已經完成
+- [ ] 全組都讀過 `analysis_plan.yml` 和 `paper/01_methods.md`
+
 **請老師看過計畫後**再執行：
 
 ```bash
