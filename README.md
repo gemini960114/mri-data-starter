@@ -87,7 +87,7 @@ uv run python src/check_stage.py R      # 只看某一階段
 
 本練習使用 **tw-highschool-panel** 資料集 v2026.10.1，原始資料來自教育部統計處公開的高級中等學校校別與科別資料：
 
-> Chuang, C.-C. (2026). *tw-highschool-panel：臺灣高級中等學校校級面板資料（103–114 學年度）* (Version 2026.10.1) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.23293536
+> Chuang, C.-C. (2026). *tw-highschool-panel：臺灣高級中等學校校級面板資料（103–114 學年度）* (Version 2026.10.1) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.23293537
 
 欄位定義見 [`docs/codebook.md`](docs/codebook.md)。資料是**學校層級**的彙總統計，沒有學生個人資料。
 

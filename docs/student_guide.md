@@ -613,4 +613,4 @@ uv run python src/check_stage.py M      # 只看某一階段：M R I D A T X
 
 ### 資料來源
 
-> Chuang, C.-C. (2026). *tw-highschool-panel：臺灣高級中等學校校級面板資料（103–114 學年度）* (Version 2026.10.1) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.23293536
+> Chuang, C.-C. (2026). *tw-highschool-panel：臺灣高級中等學校校級面板資料（103–114 學年度）* (Version 2026.10.1) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.23293537
