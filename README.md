@@ -37,7 +37,7 @@
 
 ## 第 0 步：準備環境（約 10 分鐘）
 
-需要 [git](https://git-scm.com/)、[uv](https://docs.astral.sh/uv/)，以及一個 AI 程式助理（例如 Claude Code）。
+需要 [git](https://git-scm.com/)、[uv](https://docs.astral.sh/uv/)，以及 AI 編輯器 [Antigravity IDE](https://antigravity.google/download)（下載頁請選「Antigravity IDE (Standalone)」）。
 
 ```bash
 git clone https://github.com/gemini960114/mri-data-starter
@@ -50,7 +50,7 @@ uv run python src/get_data.py
 
 > 無法 `git clone` 時：向老師拿 zip 檔，解壓縮後在資料夾內執行 `git init`，再從 `uv sync` 開始。
 
-**用 AI 之前**：在這個資料夾裡啟動 AI 助理。AI 會先讀 [`AGENTS.md`](AGENTS.md)，裡面寫好了 MRI-DATA 的規則，例如「方法凍結前不能計算結果」。你也可以打開來看看，AI 被要求遵守哪些事。
+**用 AI 之前**：用 Antigravity IDE 選「檔案 → 開啟資料夾」（File → Open Folder）開啟這個資料夾，再開啟 AI 面板。AI 會先讀 [`AGENTS.md`](AGENTS.md)，裡面寫好了 MRI-DATA 的規則，例如「方法凍結前不能計算結果」。你也可以打開來看看，AI 被要求遵守哪些事。
 
 ## 第 1–7 步：照著提示詞做
 

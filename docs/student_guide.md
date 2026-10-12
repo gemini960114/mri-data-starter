@@ -36,7 +36,7 @@
 |---|---|---|
 | git | 下載模板、存版本、凍結方法 | https://git-scm.com/ |
 | uv | 建立 Python 環境、執行程式 | https://docs.astral.sh/uv/ |
-| AI 程式助理 | 和你協作的 AI（例如 Claude Code） | 依老師指示 |
+| AI 編輯器 Antigravity IDE | 和你協作的 AI | https://antigravity.google/download （請選「Antigravity IDE (Standalone)」） |
 
 ### 0-2 確認安裝成功
 
@@ -118,13 +118,15 @@ uv run python src/get_data.py
 
 ### 2-1 在專案資料夾裡啟動 AI
 
-**一定要在 `mri-data-starter` 資料夾裡啟動**，AI 才會讀到這個專案的規則。例如使用 Claude Code：
+**一定要開啟 `mri-data-starter` 資料夾**，AI 才會讀到這個專案的規則。
+
+在 Antigravity IDE 選「檔案 → 開啟資料夾」（File → Open Folder），開啟 `mri-data-starter`，再開啟 AI 面板。也可以在專案資料夾的終端機輸入：
 
 ```powershell
-claude
+antigravity-ide .
 ```
 
-或在 VS Code 打開這個資料夾，再開啟 AI 面板。
+> 使用其他 AI 程式助理（例如 Claude Code）也可以，一樣要在 `mri-data-starter` 資料夾裡啟動。
 
 ### 2-2 輸入第一句
 
@@ -141,7 +143,7 @@ claude
 
 ✅ **檢查點**：AI 有提到這些規則。代表專案裡的 `AGENTS.md` 生效了，它是寫給 AI 看的規則檔。
 
-**AI 答不出這些規則**：通常是沒有在專案資料夾裡啟動。請關掉 AI，`cd` 到 `mri-data-starter` 再啟動。
+**AI 答不出這些規則**：通常是開錯資料夾。請確認 Antigravity IDE 開啟的是 `mri-data-starter` 資料夾本身（不是它的上一層），再重新開啟 AI 面板。
 
 ---
 
@@ -556,7 +558,7 @@ git push --tags
 | 問題 | 原因 | 處理 |
 |---|---|---|
 | `uv sync` 出現 `Failed to hardlink files` | uv 的快取和專案不在同一個磁碟 | 可忽略；或先輸入 `$env:UV_LINK_MODE="copy"` |
-| AI 答不出專案規則 | 沒有在專案資料夾裡啟動 AI | 關掉 AI，`cd` 到專案資料夾再啟動 |
+| AI 答不出專案規則 | 開錯資料夾 | 用「檔案 → 開啟資料夾」開啟 `mri-data-starter` 本身，再重新開啟 AI 面板 |
 | AI 在 M 階段就算出結果 | 違反規則 | 告訴 AI「現在是 M 階段，請不要計算任何結果」，刪掉它產生的結果檔 |
 | 不確定凍結是 commit 還是 tag | 兩個都要 | commit 存內容，tag 標記「這一版是凍結版」 |
 | 凍結後才發現想改方法 | — | **不能刪標籤重來**。照原計畫執行，在討論中說明；真的必須改，先寫進 `deviations.md` |
